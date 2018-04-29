@@ -21,6 +21,13 @@ public class Room
 		this.contents = contents;
 	}
 
+	public Room(String description, int[] location, boolean locked)
+	{
+		this.description = description;
+		this.locked = locked;
+		this.inhabitants = new TreeMap<ComparablePhrases, Character>();
+		this.contents = new TreeMap<ComparablePhrases, Item>();
+
 	public String getDescription()
 	{
 		return this.description;
@@ -108,5 +115,15 @@ public class Room
 			}
 			return null;
 		}
+	}
+
+	public void addInhabitant(ComparablePhrases key, Character inhabitant)
+	{
+		this.inhabitants.put(key, inhabitant);	
+	} 
+
+	public void addItem(ComparablePhrases key, Item item)
+	{
+		this.contents.put(key, item);
 	}
 }

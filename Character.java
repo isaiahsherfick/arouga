@@ -1,3 +1,4 @@
+import java.util.*;
 public class Character
 {
 	
@@ -5,16 +6,28 @@ public class Character
 	private int maxHealth;
 	private boolean isAlive;
 	private ArrayList<Item> inventory;
+	private ComparablePhrases identifiablePhrases;
 	private String name;
 	private Weapon equippedWeapon;
 		
-	public Character(int health, int maxHealth, ArrayList<Item> inventory, String name, Weapon equippedWeapon)
+	public Character(int health, int maxHealth, ArrayList<Item> inventory, ComparablePhrases identifiablePhrases, String name, Weapon equippedWeapon)
 	{
 		this.health = health;
 		this.maxHealth = maxHealth;
 		this.inventory = inventory;
+		this.identifiablePhrases = identifiablePhrases;
 		this.name = name;
 		this.equippedWeapon = weapon;
+	}
+
+	public Character(int health, int maxHealth, String name, Weapon equippedWeapon)
+	{
+		this.health = health;
+		this.maxHealth = maxHealth;
+		this.inventory = new ArrayList<Item>();
+		this.identifiablePhrases = new ComparablePhrases();
+		this.name = name;
+		this.equippedWeapon = equippedWeapon;
 	}
 	
 	public int getHealth()
@@ -81,6 +94,16 @@ public class Character
 		{
 			return null;
 		}
+	}
+
+	public ComparablePhrases getIdentifiablePhrases()
+	{
+		return this.identifiablePhrases;
+	}
+
+	public void setComparablePhrases(ComparablePhrases identifiablePhrases)
+	{
+		this.identifiablePhrases = identifiablePhrases;
 	}
 	 
 	public Weapon getEquippedWeapon()
