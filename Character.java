@@ -17,7 +17,7 @@ public class Character
 		this.inventory = inventory;
 		this.identifiablePhrases = identifiablePhrases;
 		this.name = name;
-		this.equippedWeapon = weapon;
+		this.equippedWeapon = equippedWeapon;
 	}
 
 	public Character(int health, int maxHealth, String name, Weapon equippedWeapon)
@@ -28,6 +28,16 @@ public class Character
 		this.identifiablePhrases = new ComparablePhrases();
 		this.name = name;
 		this.equippedWeapon = equippedWeapon;
+	}
+
+	//Default constructor just for test environments
+	public Character()
+	{
+		this.health = 100;
+		this.maxHealth = 100;
+		this.identifiablePhrases = new ComparablePhrases();
+		this.name = "Test Character";
+		this.equippedWeapon = null;
 	}
 	
 	public int getHealth()
@@ -88,7 +98,7 @@ public class Character
 	{
 		if (this.inventory.size() > index)
 		{
-			return this.inventory.get(index)
+			return this.inventory.get(index);
 		}
 		else
 		{
@@ -108,7 +118,7 @@ public class Character
 	 
 	public Weapon getEquippedWeapon()
 	{
-		return this.equippedWeapon();
+		return this.equippedWeapon;
 	}
 
 	//Need an attack function after other classes are finished

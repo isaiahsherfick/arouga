@@ -1,3 +1,5 @@
+import java.lang.*;
+import java.util.*;
 public class ComparablePhrases implements Comparable
 {
 	private ArrayList<String> phrases;
