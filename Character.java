@@ -121,8 +121,6 @@ public class Character
 		return this.equippedWeapon;
 	}
 
-	//Need an attack function after other classes are finished
-
 	public void setEquippedWeapon(Weapon equippedWeapon)
 	{
 		this.equippedWeapon = equippedWeapon;
