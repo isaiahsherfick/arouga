@@ -1,4 +1,5 @@
 Finish CombatDriver
+	specifically the bug that comes from inputting 1, 1 when running the current version
 Start DataManager
 Start OverWorldDriver
 Bugtest all of them working together

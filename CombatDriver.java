@@ -82,7 +82,7 @@ public class CombatDriver implements Runnable
 							while (!validInput)
 							{
 								//User enters a value outside of the range of the array or their index in the array
-								if (userInput < combatants.size() || userInput == 0)
+								if (userInput < combatants.size() - 1 || userInput == 0)
 								{
 									System.out.printf("Please input the number to the left of the enemy you would like to attack.\n");
 								}
