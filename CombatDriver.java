@@ -56,7 +56,7 @@ public class CombatDriver implements Runnable
 					//Start loop at 1 because we want to print the player's stats at the bottom
 					for (int j = 1; j < combatants.size(); j++)
 					{
-						System.out.printf("%d: %s\tHealth: %d\n",j,combatants.get(i),combatants.get(i).getHealth());
+						System.out.printf("%d: %s\tHealth: %d\n",j,combatants.get(i).getName(),combatants.get(i).getHealth());
 					}	
 
 					this.printFiveLines();
@@ -96,8 +96,14 @@ public class CombatDriver implements Runnable
 								}
 							}
 
-							//make the player's equipped weapon deal its damage to the enemy the user picked
-							combatants.get(0).getEquippedWeapon().dealDamage(combatants.get(userInput));
+							//calculate the damage
+							int damage = combatants.get(0).getEquippedWeapon().getDamage();
+
+							//debug
+							System.out.printf("Dealing %d damage to enemy %d",damage,userInput);
+
+							//adjust the health of the target
+							combatants.get(userInput).setHealth(combatants.get(userInput).getHealth() - damage);
 							break;
 						}
 
@@ -139,10 +145,14 @@ public class CombatDriver implements Runnable
 	//Main just for bugtesting
 	public static void main(String[] args)
 	{
-		Character testCharacter = new Character();
+		Character testCharacter1 = new Character();
+		ComparablePhrases whatever = new ComparablePhrases();
+		Weapon testWeapon = new Weapon("A test weapon", "sword", whatever, whatever, 5, 10);
 		Character testCharacter2 = new Character();
+		testCharacter1.setEquippedWeapon(testWeapon);
+		testCharacter2.setEquippedWeapon(testWeapon);
 		ArrayList<Character> combatants = new ArrayList<Character>();
-		combatants.add(testCharacter);
+		combatants.add(testCharacter1);
 		combatants.add(testCharacter2);
 		CombatDriver driver = new CombatDriver(combatants);
 		driver.engageCombat();

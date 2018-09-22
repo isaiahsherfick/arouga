@@ -16,17 +16,31 @@ public class Weapon extends Item
 		this.durability = durability;
 	}
 
-	public void dealDamage(Character target)
-	{
-		System.out.printf("Dealt %d damage to %s!\n",this.damage,target);
-		target.setHealth(target.getHealth() - this.damage);
-	}
-
 	public void use()
 	{
 		System.out.printf("Who would you like to use the %s on?\n", this.getName());
 		Scanner input = new Scanner(System.in);
 		String target = input.next();
 		System.out.printf("Using the %s on %s", this.getName(), target);
+	}
+
+	public int getDamage()
+	{
+		return this.damage;
+	}
+
+	public void setDamage(int damage)
+	{	
+		this.damage = damage;
+	}
+
+	public int getDurability()
+	{	
+		return this.durability;
+	}
+
+	public void setDurability(int durability)
+	{
+		this.durability = durability;
 	}
 }

@@ -130,4 +130,14 @@ public class Character
 	{
 		this.equippedWeapon = weapon;
 	}
+
+	public String getName()
+	{	
+		return this.name;
+	}
+
+	public void setName(String name)
+	{
+		this.name = name;
+	}
 }
