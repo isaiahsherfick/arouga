@@ -50,6 +50,11 @@ public class Character
 		this.health = health;
 	}
 
+	public void takeDamage(Weapon weapon)
+	{
+		this.health -= weapon.getDamage();
+	}
+
 	public void takeDamage(int amount)
 	{
 		if (this.isAlive)

@@ -103,7 +103,7 @@ public class CombatDriver implements Runnable
 							System.out.printf("Dealing %d damage to enemy %d",damage,userInput);
 
 							//adjust the health of the target
-							combatants.get(userInput).setHealth(combatants.get(userInput).getHealth() - damage);
+							combatants.get(userInput).takeDamage(combatants.get(0).getEquippedWeapon());
 							break;
 						}
 
