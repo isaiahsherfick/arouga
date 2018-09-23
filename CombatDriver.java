@@ -2,14 +2,18 @@ import java.util.*;
 import java.lang.*;
 public class CombatDriver implements Runnable
 {
-	private ArrayList<Character> combatants;
+	private Character player;
+	private Character enemy;
+	//Needed to call the sleep function
+	Thread t;
 
 	//Constructor for the CombatDriver class
-	//@param combatants: an ArrayList containing characters, with the PlayerCharacter in the cell at index 0.
+	//@param combatants: two Characters. The player, then the enemy.
 	//@return a new CombatDriver object
-	public CombatDriver(ArrayList<Character> combatants)
+	public CombatDriver(Character player, Character enemy)
 	{
-		this.combatants = combatants;	
+		this.player = player;	
+		this.enemy = enemy;
 	}
 
 	//Just looks nice
@@ -30,109 +34,173 @@ public class CombatDriver implements Runnable
 		}
 	}
 
+	//this is the main block of combat information that will be displayed every turn
+	private void displayInformation()
+	{
+		//Display information for user
+		System.out.printf("Enemy %s:\n",enemy.getName());
+		System.out.printf("Health: %d\n",enemy.getHealth());
+
+		this.printFiveLines();
+		
+		System.out.printf("%s:\n",player.getName());
+		System.out.printf("Health: %d\n",player.getHealth());
+	}
+
 	//Makes the Characters contained in combatants array fight each other
 	public void engageCombat()
 	{
-		int numberOfCombatants = combatants.size();
-
 		Scanner input = new Scanner(System.in);
 	
 		int userInput;
 
-		while (numberOfCombatants > 1)
+		//This will be used to keep track of whose turn it is. When 1 = 0, it's the player's turn. When i = 1, it's the enemy's.
+		int i = 0;
+
+		//While neither Character is dead
+		while (player.getHealth() > 0 && enemy.getHealth() > 0)
 		{
-			for (int i = 0; i < combatants.size(); i++)
+			//If it's the player's turn
+			if (i == 0)
 			{
-				//If it's the player's turn
-				if (i == 0)
+				//Player's turn, need input
+				
+				this.clearTerminal();	
+
+				System.out.printf("%s's turn.\n",player.getName());
+				
+				this.displayInformation();
+
+				this.printFiveLines();
+			
+				System.out.printf("What will %s do?\n",player.getName());	
+
+				this.printFiveLines();
+
+				System.out.printf("1. Attack\n");
+				System.out.printf("2. Use Item\n");
+				System.out.printf("3. Run Away\n");
+
+				this.printFiveLines();
+					
+				userInput = input.nextInt();
+
+				//sleep function held together by duct tape
+				try
 				{
-					//Player's turn, need input
-					
-					this.clearTerminal();
-					
-					//Display information for user
-					System.out.printf("Enemies:\n");
+					Thread.sleep(2000);
+				}
+				catch(Exception e)
+				{
+					System.out.println("SLEEP ERROR");
+				}
+				//end sleep function held together by duct tape
 
-					//Start loop at 1 because we want to print the player's stats at the bottom
-					for (int j = 1; j < combatants.size(); j++)
+				this.clearTerminal();
+
+				this.displayInformation();
+
+				this.printFiveLines();
+
+				switch(userInput)
+				{
+					//User wants to attack
+					case 1:
 					{
-						System.out.printf("%d: %s\tHealth: %d\n",j,combatants.get(i).getName(),combatants.get(i).getHealth());
-					}	
+						//calculate the damage
+						int damage = player.getEquippedWeapon().getDamage();
 
-					this.printFiveLines();
-					System.out.printf("What would you like to do?\n");
-					System.out.printf("1. Attack\n");
-					System.out.printf("2. Use an item\n");
-					System.out.printf("3. Run away\n");
-					
-					userInput = input.nextInt();
+						//debug
+						System.out.printf("Dealing %d damage to enemy %d\n",damage,userInput);
 
-					System.out.printf("%d",userInput);
-
-					this.printFiveLines();
-					switch(userInput)
-					{
-						//User wants to attack
-						case 1:
+						//sleep function held together by duct tape
+						try
 						{
-							System.out.printf("Which enemy would you like to attack?\n");
-							userInput = input.nextInt();
-							boolean validInput = false;
-
-							while (!validInput)
-							{
-								//User enters a value outside of the range of the array or their index in the array
-								if (userInput < combatants.size() - 1 || userInput == 0)
-								{
-									System.out.printf("Please input the number to the left of the enemy you would like to attack.\n");
-								}
-								else if (combatants.get(userInput).getHealth() <= 0)
-								{
-									System.out.printf("Please input the number to the left of the enemy you would like to attack.\n");
-								}
-								else
-								{
-									validInput = true;
-								}
-							}
-
-							//calculate the damage
-							int damage = combatants.get(0).getEquippedWeapon().getDamage();
-
-							//debug
-							System.out.printf("Dealing %d damage to enemy %d",damage,userInput);
-
-							//adjust the health of the target
-							combatants.get(userInput).takeDamage(combatants.get(0).getEquippedWeapon());
-							break;
+							Thread.sleep(2000);
 						}
-
-						//User wants to use an item
-						case 2:
+						catch(Exception e)
 						{
-							System.out.printf("2\n");
-							break;
+							System.out.println("SLEEP ERROR");
 						}
+						//end sleep function held together by duct tape
 
-						//User wants to run away
-						case 3:
-						{
-							System.out.printf("3\n");
-							break;
-						}
-
+						//adjust the health of the target
+						enemy.takeDamage(damage);
+						break;
 					}
 
-				}
-				else
-				{
-					//Make sure the enemy isn't already dead
-					if (combatants.get(i).getHealth() > 0)
+					//User wants to use an item
+					case 2:
 					{
-						//Enemy's turn, no input required
+						System.out.printf("2\n");
+						break;
+					}
+
+					//User wants to run away
+					case 3:
+					{
+						System.out.printf("3\n");
+						break;
 					}
 				}
+				
+				//End the player's turn by switching i to 1
+				i = 1;
 			}
+
+			//if it's the enemy's turn
+			else if (i == 1)
+			{
+				this.clearTerminal();
+				System.out.printf("%s's turn.\n",enemy.getName());
+				this.displayInformation();
+
+				//sleep function held together by duct tape
+				try
+				{
+					Thread.sleep(2000);
+				}
+				catch(Exception e)
+				{
+					System.out.println("SLEEP ERROR");
+				}
+				//end sleep function held together by duct tape
+
+				System.out.printf("The %s swings its %s at you!\n",enemy.getName(),enemy.getEquippedWeapon().getName());
+				
+				//sleep function held together by duct tape
+				try
+				{
+					Thread.sleep(2000);
+				}
+				catch(Exception e)
+				{
+					System.out.println("SLEEP ERROR");
+				}
+				//end sleep function held together by duct tape
+				
+				//calculate the damage
+				int damage = enemy.getEquippedWeapon().getDamage();
+
+				System.out.printf("You take %d damage.\n", damage);
+
+				player.takeDamage(damage);
+
+				//sleep function held together by duct tape
+				try
+				{
+					Thread.sleep(2000);
+				}
+				catch(Exception e)
+				{
+					System.out.println("SLEEP ERROR");
+				}
+				//end sleep function held together by duct tape
+
+				//end the enemy's turn by setting i to 0, making it the player's turn 
+				i = 0;
+			}
+
 		}
 	}
 
@@ -145,16 +213,13 @@ public class CombatDriver implements Runnable
 	//Main just for bugtesting
 	public static void main(String[] args)
 	{
-		Character testCharacter1 = new Character();
+		Character player = new Character();
 		ComparablePhrases whatever = new ComparablePhrases();
 		Weapon testWeapon = new Weapon("A test weapon", "sword", whatever, whatever, 5, 10);
-		Character testCharacter2 = new Character();
-		testCharacter1.setEquippedWeapon(testWeapon);
-		testCharacter2.setEquippedWeapon(testWeapon);
-		ArrayList<Character> combatants = new ArrayList<Character>();
-		combatants.add(testCharacter1);
-		combatants.add(testCharacter2);
-		CombatDriver driver = new CombatDriver(combatants);
+		Character enemy = new Character();
+		player.setEquippedWeapon(testWeapon);
+		enemy.setEquippedWeapon(testWeapon);
+		CombatDriver driver = new CombatDriver(player, enemy);
 		driver.engageCombat();
 	}
 }

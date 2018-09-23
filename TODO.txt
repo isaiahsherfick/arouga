@@ -1,5 +1,6 @@
-Finish CombatDriver
-	specifically the bug that comes from inputting 1, 1 when running the current version
+Current Task: Clean up CombatDriver's interface, figure out how to actually make damage get dealt
+
+
 Start DataManager
 Start OverWorldDriver
 Bugtest all of them working together
