@@ -1,4 +1,4 @@
-Current Task: Clean up CombatDriver's interface, figure out how to actually make damage get dealt
+Current Task: Clean up CombatDriver's interface
 
 
 Start DataManager

@@ -68,11 +68,7 @@ public class CombatDriver implements Runnable
 				this.clearTerminal();	
 
 				System.out.printf("%s's turn.\n",player.getName());
-				
-				this.displayInformation();
 
-				this.printFiveLines();
-			
 				System.out.printf("What will %s do?\n",player.getName());	
 
 				this.printFiveLines();
@@ -80,6 +76,9 @@ public class CombatDriver implements Runnable
 				System.out.printf("1. Attack\n");
 				System.out.printf("2. Use Item\n");
 				System.out.printf("3. Run Away\n");
+
+				this.printFiveLines();
+				this.displayInformation();
 
 				this.printFiveLines();
 					
@@ -125,7 +124,9 @@ public class CombatDriver implements Runnable
 						//end sleep function held together by duct tape
 
 						//adjust the health of the target
-						enemy.takeDamage(damage);
+						System.out.printf("Enemy Health %d\n",enemy.getHealth());
+						enemy.setHealth(enemy.getHealth() - damage);
+						System.out.printf("Enemy Health &d after damage applied\n",enemy.getHealth());
 						break;
 					}
 
