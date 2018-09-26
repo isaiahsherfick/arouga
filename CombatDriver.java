@@ -19,7 +19,7 @@ public class CombatDriver implements Runnable
 	//Just looks nice
 	private void clearTerminal()
 	{
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 50; i++)
 		{
 			System.out.printf("\n");
 		}
@@ -70,8 +70,6 @@ public class CombatDriver implements Runnable
 				System.out.printf("%s's turn.\n",player.getName());
 
 				System.out.printf("What will %s do?\n",player.getName());	
-
-				this.printFiveLines();
 
 				System.out.printf("1. Attack\n");
 				System.out.printf("2. Use Item\n");
@@ -155,6 +153,7 @@ public class CombatDriver implements Runnable
 				this.clearTerminal();
 				System.out.printf("%s's turn.\n",enemy.getName());
 				this.displayInformation();
+				this.printFiveLines();
 
 				//sleep function held together by duct tape
 				try
@@ -185,7 +184,7 @@ public class CombatDriver implements Runnable
 
 				System.out.printf("You take %d damage.\n", damage);
 
-				player.takeDamage(damage);
+				player.setHealth(player.getHealth() - damage);
 
 				//sleep function held together by duct tape
 				try
