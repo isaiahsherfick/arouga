@@ -67,18 +67,15 @@ public class CombatDriver implements Runnable
 				
 				this.clearTerminal();	
 
-				System.out.printf("%s's turn.\n",player.getName());
 
-				System.out.printf("What will %s do?\n",player.getName());	
+				System.out.printf("%s's turn.\n",player.getName());
+				this.displayInformation();
+				System.out.printf("\nWhat will %s do?\n",player.getName());	
 
 				System.out.printf("1. Attack\n");
 				System.out.printf("2. Use Item\n");
-				System.out.printf("3. Run Away\n");
+				System.out.printf("3. Run Away\n\n\n");
 
-				this.printFiveLines();
-				this.displayInformation();
-
-				this.printFiveLines();
 					
 				userInput = input.nextInt();
 
@@ -92,12 +89,6 @@ public class CombatDriver implements Runnable
 					System.out.println("SLEEP ERROR");
 				}
 				//end sleep function held together by duct tape
-
-				this.clearTerminal();
-
-				this.displayInformation();
-
-				this.printFiveLines();
 
 				switch(userInput)
 				{
@@ -122,9 +113,7 @@ public class CombatDriver implements Runnable
 						//end sleep function held together by duct tape
 
 						//adjust the health of the target
-						System.out.printf("Enemy Health %d\n",enemy.getHealth());
 						enemy.setHealth(enemy.getHealth() - damage);
-						System.out.printf("Enemy Health &d after damage applied\n",enemy.getHealth());
 						break;
 					}
 
@@ -154,6 +143,7 @@ public class CombatDriver implements Runnable
 				System.out.printf("%s's turn.\n",enemy.getName());
 				this.displayInformation();
 				this.printFiveLines();
+				System.out.printf("\n");
 
 				//sleep function held together by duct tape
 				try
@@ -166,7 +156,7 @@ public class CombatDriver implements Runnable
 				}
 				//end sleep function held together by duct tape
 
-				System.out.printf("The %s swings its %s at you!\n",enemy.getName(),enemy.getEquippedWeapon().getName());
+				System.out.printf("The %s swings its %s at you! ",enemy.getName(),enemy.getEquippedWeapon().getName());
 				
 				//sleep function held together by duct tape
 				try

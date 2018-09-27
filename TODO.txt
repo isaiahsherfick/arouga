@@ -1,7 +1,8 @@
 Current Task: Clean up CombatDriver's interface
 
 
-Start DataManager
+add inventory implementation to PlayerCharacter
 Start OverWorldDriver
+Start DataManager
 Bugtest all of them working together
 Actually make your game
