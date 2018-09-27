@@ -99,7 +99,7 @@ public class CombatDriver implements Runnable
 						int damage = player.getEquippedWeapon().getDamage();
 
 						//debug
-						System.out.printf("Dealing %d damage to enemy %d\n",damage,userInput);
+						System.out.printf("Dealing %d damage to enemy %d",damage,userInput);
 
 						//sleep function held together by duct tape
 						try
@@ -172,7 +172,7 @@ public class CombatDriver implements Runnable
 				//calculate the damage
 				int damage = enemy.getEquippedWeapon().getDamage();
 
-				System.out.printf("You take %d damage.\n", damage);
+				System.out.printf("You take %d damage.", damage);
 
 				player.setHealth(player.getHealth() - damage);
 

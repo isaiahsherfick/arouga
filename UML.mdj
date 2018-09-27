@@ -629,13 +629,30 @@
 											"height": 13,
 											"text": "-exploredRooms: ArrayList<Room>",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFmGNnEwkQAylo=",
+											"_parent": {
+												"$ref": "AAAAAAFijMBM5GRMWXE="
+											},
+											"model": {
+												"$ref": "AAAAAAFmGNnEaUP9mJg="
+											},
+											"font": "Arial;13;0",
+											"left": 1717,
+											"top": 973,
+											"width": 206,
+											"height": 13,
+											"text": "-inventory: ArrayList<Item>",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1712,
 									"top": 953,
 									"width": 216,
-									"height": 23
+									"height": 38
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -648,7 +665,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1712,
-									"top": 976,
+									"top": 991,
 									"width": 216,
 									"height": 10
 								},
@@ -5896,6 +5913,16 @@
 							"name": "exploredRooms",
 							"visibility": "private",
 							"type": "ArrayList<Room>"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFmGNnEaUP9mJg=",
+							"_parent": {
+								"$ref": "AAAAAAFijMBM4mREM7g="
+							},
+							"name": "inventory",
+							"visibility": "private",
+							"type": "ArrayList<Item>"
 						}
 					]
 				},
