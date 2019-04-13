@@ -1,0 +1,44 @@
+
+
+
+
+		Character
+		- name : String
+		- maxHealth : int
+		- currentHealth: int
+		- inventory : Hashtable<Integer, Item>
+
+			|
+		&-----------------------&
+		|			|
+	NonPlayerCharacter	  PlayerCharacter
+		
+
+
+
+
+
+		Item
+		-id : int
+		-name : String
+		+use() : int 
+		  |
+	&-----------------------&---------------&---------------&
+	|			|		|	    	|
+       Key		      Weapon          Lock             Chest
+
+
+		Interface: Targetable
+		+ use(Item object) : void
+		
+
+		Room
+		-id : int
+		-name : String
+		-description : String
+		-nexts : ArrayList<Room>
+		
+
+		Main
+		-start : Room
+		+main() : void
